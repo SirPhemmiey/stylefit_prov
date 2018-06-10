@@ -32,7 +32,7 @@ import {
   Item,
   Input,
   InputGroup,
-  Title,Form, Textarea,Footer
+  Title,Form, Textarea
 } from 'native-base'
 import StarRating from 'react-native-star-rating';
 import PTRView from 'react-native-pull-to-refresh';
@@ -361,8 +361,6 @@ _handleConfirm = (schedule_id, provider_id) => () => {
           </Dialog>
           
         </PTRView>
-        <Footer style={{ backgroundColor: '#6c5ce7' }}>
-        </Footer>
       </Container>
     )
   }
