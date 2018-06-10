@@ -60,10 +60,33 @@ export default class Home extends React.Component {
       })
         .then(res => res.json())
         .then(res => {
+          if (res == 'empty') {
+            this.setState({
+              showDialog: true,
+              dialogMessage: "You have no schedule yet.",
+              showLoader: false,
+            });
+          }
+          else if (res == 'auth') {
+            this.setState({
+              showDialog: true,
+              dialogMessage: "You are unauthorized",
+              showLoader: false,
+            });
+          }
+          else if (res == 'user') {
+            this.setState({
+              showDialog: true,
+              dialogMessage: "User not found",
+              showLoader: false,
+            });
+          }
+         else {
           this.setState({
             showLoader: false,
             customers: res,
           });
+         }
         })
         .catch(err => {
           this.setState({
@@ -186,7 +209,7 @@ export default class Home extends React.Component {
           <Text onPress={this.login}>CLICK ME</Text>
           {!this.state.showLoader
             ? (
-              this.state.customer ? (
+              !this.state.customer ? (
                 this.state.customers.map((customer, index) => {
                   return (
                     <Card title="Schedule + {index}" key={index}>
