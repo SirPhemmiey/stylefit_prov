@@ -134,9 +134,9 @@ const Application = StackNavigator(
   },
   {
     headerMode: 'none',
-     //initialRouteName: 'pro'
+     initialRouteName: 'loginStack'
      //initialRouteName: 'welcomeStack'
-    initialRouteName: 'drawerStack'
+   // initialRouteName: 'drawerStack'
      //initialRouteName: 'forgotPassword'
      //initialRouteName: 'schedules'
   }

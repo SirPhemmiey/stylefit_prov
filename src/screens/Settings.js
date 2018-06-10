@@ -24,10 +24,17 @@ export default class Settings extends React.Component {
       dialogMessage: ''
     }
     this.allServices = []
+    this.logout = this.logout.bind(this)
   }
   onChangeText = () => {
     const { services } = this.state
   }
+  logout = () => {
+    let keys = ['jwt', 'loggedIn', 'seeWelcome'];
+    AsyncStorage.multiRemove(keys, err => {
+      this.props.navigation.replace('loginStack');
+    });
+  };
   loadData = () => {
     AsyncStorage.getItem('jwt').then(token => {
       fetch(Config.API_URL + '/api/profile', {
@@ -104,9 +111,13 @@ export default class Settings extends React.Component {
           </Card>
           <Card>
             <View>
-              <Text style={styles.account}>Account</Text>
+              <TouchableOpacity onPress={this.editProfile}>
+              <Text style={styles.account}>Edit Profile</Text>
+              </TouchableOpacity>
               <Divider style={{ marginTop: 10 }} />
+              <TouchableOpacity onPress={this.logout}>
               <Text style={styles.logout}>Logout</Text>
+              </TouchableOpacity>
             </View>
           </Card>
 
