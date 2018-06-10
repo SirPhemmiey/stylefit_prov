@@ -150,11 +150,11 @@ export default class Home extends React.Component {
           }
         })
         .catch(err => {
-          this.setState({
-            showDialog: true,
-            dialogMessage: err.message,
-            showLoading: false,
-          });
+          // this.setState({
+          //   showDialog: true,
+          //   dialogMessage: err.message,
+          //   showLoading: false,
+          // });
         });
     });
   }
@@ -175,12 +175,11 @@ export default class Home extends React.Component {
   //     dialogVisibleAccept: true,
   //   });
   // };
-  componentWillMount() {
+  componentDidMount() {
     this.loadData();
   }
 
   render() {
-    const customers = this.state.customers;
     return (
       <Container>
         <StatusBar
@@ -209,7 +208,7 @@ export default class Home extends React.Component {
           <Text onPress={this.login}>CLICK ME</Text>
           {!this.state.showLoader
             ? (
-              !this.state.customer ? (
+              this.state.customer ? (
                 this.state.customers.map((customer, index) => {
                   return (
                     <Card title="Schedule + {index}" key={index}>
