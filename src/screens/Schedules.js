@@ -132,7 +132,7 @@ export default class Schedules extends React.Component {
    
   loadData() {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch(Config.API_URL + '/provapi/all_schedules', {
+      fetch('http://192.168.56.1/stylefit/provapi/all_schedules', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ _handleConfirm = (schedule_id, provider_id) => () => {
   //this.setState({ showConfirm: false })
   AsyncStorage.getItem('jwt').then(token => {
     this.setState({ showLoading: true})
-    fetch(Config.API_URL + '/provapi/confirm_schedule', {
+    fetch('http://192.168.56.1/stylefit/provapi/confirm_schedule', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

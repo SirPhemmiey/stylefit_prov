@@ -39,8 +39,7 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showLoader: true,
-      showLoading: false,
+      showLoading: true,
       customers: [],
       showDialog: false,
       dialogMessage: '',
@@ -64,26 +63,26 @@ export default class Home extends React.Component {
             this.setState({
               showDialog: true,
               dialogMessage: "You have no schedule yet.",
-              showLoader: false,
+              showLoading: false,
             });
           }
           else if (res == 'auth') {
             this.setState({
               showDialog: true,
               dialogMessage: "You are unauthorized",
-              showLoader: false,
+              showLoading: false,
             });
           }
           else if (res == 'user') {
             this.setState({
               showDialog: true,
               dialogMessage: "User not found",
-              showLoader: false,
+              showLoading: false,
             });
           }
          else {
           this.setState({
-            showLoader: false,
+            showLoading: false,
             customers: res,
           });
          }
@@ -92,7 +91,7 @@ export default class Home extends React.Component {
           this.setState({
             showDialog: true,
             dialogMessage: err.message,
-            showLoader: false,
+            showLoading: false,
           });
         });
     });
@@ -206,7 +205,7 @@ export default class Home extends React.Component {
         >
           <Text style={styles.title}>List of your Schedules</Text>
           <Text onPress={this.login}>CLICK ME</Text>
-          {!this.state.showLoader
+          {!this.state.showLoading
             ? (
               this.state.customer ? (
                 this.state.customers.map((customer, index) => {
@@ -332,7 +331,7 @@ export default class Home extends React.Component {
           />
           <ProgressDialog
             visible={this.state.showLoading}
-            title='Initiating'
+            title='Retrieving data'
             message='Please wait...'
           />
           <Dialog
@@ -360,11 +359,6 @@ export default class Home extends React.Component {
              <Text style={{fontFamily: 'NunitoSans-Regular', padding: 4, color: '#fff'}}>CLOSE</Text>
             </Button>
           </Dialog>
-          <ActivityIndicator
-            color="#6c5ce7"
-            size="small"
-            animating={this.state.showLoader}
-          />
         </PTRView>
       </Container>
     );

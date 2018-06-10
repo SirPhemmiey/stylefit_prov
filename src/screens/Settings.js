@@ -24,7 +24,6 @@ export default class Settings extends React.Component {
       showDialog: '',
       dialogMessage: ''
     }
-    this.allServices = []
     this.logout = this.logout.bind(this)
     this.editProfile = this.editProfile.bind(this);
   }
@@ -37,12 +36,14 @@ export default class Settings extends React.Component {
       this.props.navigation.replace('loginStack');
     });
   };
-  editProfile() {
-
+  editProfile = (customer_id) => () =>  {
+    this.props.navigation.navigate("editProfile", {
+      customer_id: customer_id
+    })
   }
   loadData = () => {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch(Config.API_URL + '/api/profile', {
+      fetch('http://192.168.56.1/stylefit/povapi/profile', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -113,7 +114,7 @@ export default class Settings extends React.Component {
           </Card>
           <Card>
             <View>
-              <TouchableOpacity onPress={this.editProfile}>
+              <TouchableOpacity onPress={this.editProfile(profile.id)}>
               <Text style={styles.account}>Edit Profile</Text>
               </TouchableOpacity>
               <Divider style={{ marginTop: 10 }} />

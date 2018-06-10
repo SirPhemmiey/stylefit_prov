@@ -21,7 +21,7 @@ const tabStack = TabNavigator(
     Home: {
       screen: Home
     },
-    Track: { screen: Mapping },
+    //Track: { screen: Mapping },
     Schedules: { screen: Schedules},
     Settings: { screen: Settings },
   },

@@ -76,7 +76,7 @@ export default class Mapping extends React.Component {
   }
   _getProvLocation = () => {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch(Config.API_URL + '/api/get_latlng', {
+      fetch('http://192.168.56.1/stylefit/api/get_latlng', {
         method: 'GET',
         headers: {
           Accept: 'application/json',
