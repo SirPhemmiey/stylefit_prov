@@ -36,7 +36,7 @@ export default class Login extends React.Component {
   navigateToLogin = () => {
     const toHome = NavigationActions.reset({
       index: 0,
-      actions: [NavigationActions.navigate({ routeName: 'drawerStack' })]
+      actions: [NavigationActions.navigate({ routeName: 'tabStack' })]
     })
     this.props.navigation.dispatch(toHome)
   }
@@ -65,7 +65,7 @@ export default class Login extends React.Component {
             //   ['seeWelcome', 'yes'],
             //   ['phone', res.phone]
             // ])
-            this.props.navigation.replace('drawerStack')
+            this.props.navigation.replace('tabStack')
           } else if (res.error) {
             this.setState({
               showDialog: true,

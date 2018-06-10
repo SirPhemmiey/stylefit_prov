@@ -207,7 +207,7 @@ export default class Home extends React.Component {
           <Text onPress={this.login}>CLICK ME</Text>
           {!this.state.showLoading
             ? (
-              this.state.customer ? (
+              this.state.customers ? (
                 this.state.customers.map((customer, index) => {
                   return (
                     <Card title="Schedule + {index}" key={index}>

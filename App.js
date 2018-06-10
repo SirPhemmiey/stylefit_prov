@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation'
+import { StackNavigator, TabNavigator } from 'react-navigation'
 import Login from './src/screens/Login'
 import Signup from './src/screens/Signup'
 import Welcome from './src/screens/Welcome'
@@ -13,6 +13,7 @@ import ChangePassword from './src/screens/ChangePassword';
 import ForgotPassword from './src/screens/ForgotPassword';
 import Schedules from './src/screens/Schedules';
 import Mapping from './src/screens/Mapping';
+import EditProfile from './src/screens/EditProfile'
 
 
 
@@ -88,22 +89,11 @@ const tabStack = TabNavigator(
   }
 )
 
-const drawerStack = DrawerNavigator(
-  {
-    Home: { screen: tabStack },
-    login: { screen: Login}
-  },
-  {
-    contentComponent: Sidebar,
-    drawerWidth: 250
-  },
-)
-
 const loginStack = StackNavigator(
   {
     Login: { screen: Login },
     Signup: { screen: Signup },
-    drawerStack: { screen: drawerStack }
+    tabStack: { screen: tabStack }
   },
   {
     headerMode: 'none',
@@ -126,18 +116,20 @@ const Application = StackNavigator(
   {
     loginStack: { screen: loginStack },
     welcomeStack: { screen: welcomeStack },
-    drawerStack: { screen: drawerStack },
+    tabStack: { screen: tabStack },
     providerDetails : { screen: ProviderDetails },
     changePassword: { screen: ChangePassword},
     forgotPassword: { screen: ForgotPassword},
     schedules : { screen: Schedules},
-    settings: { screen: Settings }
+    settings: { screen: Settings },
+    editProfile: { screen: EditProfile}
+
   },
   {
     headerMode: 'none',
      //initialRouteName: 'loginStack'
      //initialRouteName: 'welcomeStack'
-   initialRouteName: 'drawerStack'
+   initialRouteName: 'tabStack'
      //initialRouteName: 'forgotPassword'
      //initialRouteName: 'schedules'
   }
