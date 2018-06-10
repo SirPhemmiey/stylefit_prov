@@ -190,7 +190,6 @@ export default class Mapping extends React.Component {
               </Text>
             </Button>
           </Dialog>
-          <Footer></Footer>
         </Container>
     )
   }

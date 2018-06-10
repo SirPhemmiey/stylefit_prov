@@ -21,8 +21,8 @@ const tabStack = TabNavigator(
     Home: {
       screen: Home
     },
-    Schedules: { screen: Schedules},
     Track: { screen: Mapping },
+    Schedules: { screen: Schedules},
     Settings: { screen: Settings },
   },
   {
@@ -74,7 +74,7 @@ const tabStack = TabNavigator(
         backgroundColor: '#6c5ce7'
       },
       labelStyle: {
-        fontSize: 11,
+        fontSize: 9,
         //padding: 12,
         fontFamily: 'NunitoSans-Regular'
       },

@@ -150,11 +150,11 @@ export default class Home extends React.Component {
           }
         })
         .catch(err => {
-          // this.setState({
-          //   showDialog: true,
-          //   dialogMessage: err.message,
-          //   showLoading: false,
-          // });
+          this.setState({
+            showDialog: true,
+            dialogMessage: err.message,
+            showLoading: false,
+          });
         });
     });
   }
