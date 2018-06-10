@@ -6,7 +6,8 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity
 } from 'react-native'
 import Config from 'react-native-config'
 import { Avatar, Card, Divider } from 'react-native-elements'
@@ -25,16 +26,20 @@ export default class Settings extends React.Component {
     }
     this.allServices = []
     this.logout = this.logout.bind(this)
+    this.editProfile = this.editProfile.bind(this);
   }
   onChangeText = () => {
     const { services } = this.state
   }
-  logout = () => {
+  logout(){
     let keys = ['jwt', 'loggedIn', 'seeWelcome'];
     AsyncStorage.multiRemove(keys, err => {
       this.props.navigation.replace('loginStack');
     });
   };
+  editProfile() {
+
+  }
   loadData = () => {
     AsyncStorage.getItem('jwt').then(token => {
       fetch(Config.API_URL + '/api/profile', {
@@ -68,11 +73,8 @@ export default class Settings extends React.Component {
 
   render () {
     const profile = this.state.profile
-    // console.warn(profile.Customer.full_name)
-    // console.warn(this.state.services)
     return (
       <Container>
-
         <Header style={{ backgroundColor: '#6c5ce7' }}>
           <Left>
           <Button transparent iconLeft onPress={() => null}>

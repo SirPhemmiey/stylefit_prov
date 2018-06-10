@@ -130,13 +130,14 @@ const Application = StackNavigator(
     providerDetails : { screen: ProviderDetails },
     changePassword: { screen: ChangePassword},
     forgotPassword: { screen: ForgotPassword},
-    schedules : { screen: Schedules}
+    schedules : { screen: Schedules},
+    settings: { screen: Settings }
   },
   {
     headerMode: 'none',
-     initialRouteName: 'loginStack'
+     //initialRouteName: 'loginStack'
      //initialRouteName: 'welcomeStack'
-   // initialRouteName: 'drawerStack'
+   initialRouteName: 'drawerStack'
      //initialRouteName: 'forgotPassword'
      //initialRouteName: 'schedules'
   }
