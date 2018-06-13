@@ -81,7 +81,7 @@ export default class Schedules extends React.Component {
     this.setState({ showLoading: true })
     if (this.state.comments != '') {
       AsyncStorage.getItem('jwt').then(token => {
-        fetch(Config.API_URL + '/provapi/add_review', {
+        fetch('http://www.playspread.com/provapi/add_review', {
           method: "POST",
           'Content-Type' : 'application/json',
           'Authorization': `Bearer ${token}`,
@@ -132,7 +132,7 @@ export default class Schedules extends React.Component {
    
   loadData() {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://192.168.56.1/stylefit/provapi/all_schedules', {
+      fetch('http://www.playspread.com/stylefit/provapi/all_schedules', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -141,10 +141,36 @@ export default class Schedules extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-          this.setState({
-            showLoader: false,
-            schedules: res
-          })
+          if (res == 'empty') {
+            // this.setState({
+            //   showDialog: true,
+            //   dialogMessage: "You have no schedule yet",
+            //   showLoader: false,
+            //   showLoading: false
+            // })
+          }
+          else if (res == 'user') {
+            this.setState({
+              showDialog: true,
+              dialogMessage: "User not found. Please logout and login again",
+              showLoader: false,
+              showLoading: false
+            })
+          }
+          else if (res == 'auth'){
+            this.setState({
+              showDialog: true,
+              dialogMessage: "Unauthorized access. Please logout and login again",
+              showLoader: false,
+              showLoading: false
+            })
+          }
+          else {
+            this.setState({
+              showLoader: false,
+              schedules: res
+            })
+          }
         })
         .catch(err => {
           this.setState({
@@ -167,7 +193,7 @@ _handleConfirm = (schedule_id, provider_id) => () => {
   //this.setState({ showConfirm: false })
   AsyncStorage.getItem('jwt').then(token => {
     this.setState({ showLoading: true})
-    fetch('http://192.168.56.1/stylefit/provapi/confirm_schedule', {
+    fetch('http://www.playspread.com/stylefit/provapi/confirm_schedule', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -219,7 +245,7 @@ _handleConfirm = (schedule_id, provider_id) => () => {
       <Container>
           <StatusBar
           barStyle='light-content'
-          backgroundColor='red'
+          backgroundColor='#6c5ce7'
           networkActivityIndicatorVisible
         />
         <Header style={{ backgroundColor: '#6c5ce7' }}>
@@ -250,12 +276,12 @@ _handleConfirm = (schedule_id, provider_id) => () => {
           return (
             <Card title={section['Schedule']['datetime']} key={index}>
       <View style={styles.contentContainer}>
-          <Text style={styles.contentHeader}>Provider Name</Text>
-        <Text style={styles.contentText}>{section['Provider'].name}</Text>
+          <Text style={styles.contentHeader}>Customer Name</Text>
+        <Text style={styles.contentText}>{section['Customer'].full_name}</Text>
       </View>
       <View style={styles.contentContainer}>
-          <Text style={styles.contentHeader}>Provider Phone</Text>
-        <Text style={styles.contentText}>{section['Provider'].phone}</Text>
+          <Text style={styles.contentHeader}>Customer Phone</Text>
+        <Text style={styles.contentText}>{section['Schedule'].phone}</Text>
       </View>
       <View style={styles.contentContainer}>
           <Text style={styles.contentHeader}>Service Type</Text>
@@ -263,26 +289,8 @@ _handleConfirm = (schedule_id, provider_id) => () => {
       </View>
       <View style={styles.contentContainer}>
           <Text style={styles.contentHeader}>Status</Text>
-        <Text style={styles.contentText}>{section['Schedule'].status}</Text>
+        <Text style={styles.contentText}>Completed</Text>
       </View>
-      {
-        section['Schedule'].provider_confirm == 'no' ?
-        <Button small disabled danger style={styles.buttonYet}>
-        <Text style={styles.buttonText}>Provider is yet to confirm</Text>
-      </Button> : 
-       <Button small disabled success style={styles.button}>
-       <Text style={styles.buttonText}>Provider has confirmed</Text>
-     </Button>
-      }
-      {
-        section['Schedule'].cus_mark_completed == '' ? 
-        <Button danger onPress={this._handleConfirm(section['Schedule']['id'], section['Provider'].id)} small style={styles.button}>
-          <Text style={styles.buttonText}>Mark as Complete</Text>
-        </Button> : 
-         <Button small disabled success style={styles.button}>
-         <Text style={styles.buttonText}>Marked as Complete</Text>
-       </Button> 
-      }
 
       </Card>
           );

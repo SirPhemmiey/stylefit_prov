@@ -50,7 +50,7 @@ export default class Home extends React.Component {
 
   loadData = () => {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://192.168.56.1/stylefit/provapi/home', {
+      fetch('http://www.playspread.com/stylefit/provapi/home', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -60,11 +60,11 @@ export default class Home extends React.Component {
         .then(res => res.json())
         .then(res => {
           if (res == 'empty') {
-            this.setState({
-              showDialog: true,
-              dialogMessage: "You have no schedule yet.",
-              showLoading: false,
-            });
+            // this.setState({
+            //   showDialog: true,
+            //   dialogMessage: "You have no schedule yet.",
+            //   showLoading: false,
+            // });
           }
           else if (res == 'auth') {
             this.setState({
@@ -96,13 +96,13 @@ export default class Home extends React.Component {
         });
     });
   };
-  login = () => {
-    let keys = ['jwt', 'loggedIn', 'seeWelcome', 'phone'];
-    AsyncStorage.multiRemove(keys, err => {
-      alert('Deleted');
-      this.props.navigation.replace('loginStack');
-    });
-  };
+  // login = () => {
+  //   let keys = ['jwt', 'loggedIn', 'seeWelcome', 'phone'];
+  //   AsyncStorage.multiRemove(keys, err => {
+  //     alert('Deleted');
+  //     this.props.navigation.replace('loginStack');
+  //   });
+  // };
   _refresh = () => {
     this.loadData();
   };
@@ -111,7 +111,7 @@ export default class Home extends React.Component {
       showLoading: true,
     });
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://192.168.56.1/stylefit/provapi/confirm_request', {
+      fetch('http://www.playspread.com/stylefit/provapi/confirm_request', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -204,7 +204,6 @@ export default class Home extends React.Component {
           progressBackgroundColor="#6c5ce7"
         >
           <Text style={styles.title}>List of your Schedules</Text>
-          <Text onPress={this.login}>CLICK ME</Text>
           {!this.state.showLoading
             ? (
               this.state.customers ? (
@@ -288,6 +287,7 @@ export default class Home extends React.Component {
                           <Text style={styles.button}>Accept</Text>
                         </Button>
                       </View>
+                     
                     </Card>
                   );
                 })
@@ -331,7 +331,7 @@ export default class Home extends React.Component {
           />
           <ProgressDialog
             visible={this.state.showLoading}
-            title='Retrieving data'
+            title='Loading data'
             message='Please wait...'
           />
           <Dialog

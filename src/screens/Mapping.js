@@ -32,7 +32,7 @@ export default class Mapping extends React.Component {
   //   }
   _checkStatus = () => {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch(Config.API_URL + '/api/customer_provider_confirm', {
+      fetch('http://192.168.56.1/provapi/customer_provider_confirm', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export default class Mapping extends React.Component {
   }
   _getProvLocation = () => {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://192.168.56.1/stylefit/api/get_latlng', {
+      fetch('http://192.168.56.1/stylefit/provapi/get_latlng', {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -128,7 +128,7 @@ export default class Mapping extends React.Component {
   }
   componentWillMount () {
     this._getProvLocation()
-    this._checkStatus();
+   // this._checkStatus();
     //this._getCurrentLocation()
   }
   render () {

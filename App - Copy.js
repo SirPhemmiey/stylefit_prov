@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { StackNavigator, TabNavigator } from 'react-navigation'
+import { StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation'
 import Login from './src/screens/Login'
 import Signup from './src/screens/Signup'
 import Welcome from './src/screens/Welcome'
 import Settings from './src/screens/Settings'
 import Home from './src/screens/Home'
 import { Icon } from 'native-base'
+import Sidebar from './src/components/Sidebar'
 import ProviderDetails from './src/screens/ProviderDetails';
 import ChangePassword from './src/screens/ChangePassword';
 import ForgotPassword from './src/screens/ForgotPassword';
@@ -88,11 +89,22 @@ const tabStack = TabNavigator(
   }
 )
 
+const drawerStack = DrawerNavigator(
+  {
+    Home: { screen: tabStack },
+    login: { screen: Login}
+  },
+  {
+    contentComponent: Sidebar,
+    drawerWidth: 250
+  },
+)
+
 const loginStack = StackNavigator(
   {
     Login: { screen: Login },
     Signup: { screen: Signup },
-    tabStack: { screen: tabStack }
+    drawerStack: { screen: drawerStack }
   },
   {
     headerMode: 'none',
@@ -115,23 +127,20 @@ const Application = StackNavigator(
   {
     loginStack: { screen: loginStack },
     welcomeStack: { screen: welcomeStack },
-    tabStack: { screen: tabStack },
+    drawerStack: { screen: drawerStack },
     providerDetails : { screen: ProviderDetails },
     changePassword: { screen: ChangePassword},
     forgotPassword: { screen: ForgotPassword},
     schedules : { screen: Schedules},
     settings: { screen: Settings },
-    editProfile: { screen: EditProfile},
-    mapping: { screen: Mapping }
-
+    
   },
   {
     headerMode: 'none',
-    // initialRouteName: 'loginStack'
-     initialRouteName: 'welcomeStack'
-    //initialRouteName: 'tabStack'
-    //initialRouteName: 'editProfile'
-    // initialRouteName: 'mapping'
+     //initialRouteName: 'loginStack'
+     //initialRouteName: 'welcomeStack'
+   initialRouteName: 'drawerStack'
+     //initialRouteName: 'forgotPassword'
      //initialRouteName: 'schedules'
   }
 )

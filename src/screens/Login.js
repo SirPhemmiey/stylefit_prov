@@ -44,7 +44,7 @@ export default class Login extends React.Component {
   _handleLogin() {
     if (this.state.username != '' && this.state.password != '') {
       this.setState({ showLoading: true })
-      fetch('http://192.168.56.1/stylefit/provapi/login', {
+      fetch('http://www.playspread.com/stylefit/provapi/login', {
         method: 'POST',
         body: JSON.stringify({
           username: this.state.username,
