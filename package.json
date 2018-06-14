@@ -14,6 +14,7 @@
     "react-native-app-intro-slider": "^0.2.4",
     "react-native-code-push": "^5.3.4",
     "react-native-config": "^0.11.5",
+    "react-native-device-info": "^0.21.5",
     "react-native-elements": "^0.19.1",
     "react-native-google-places": "^2.5.0",
     "react-native-image-picker": "^0.26.10",

@@ -63,7 +63,7 @@ export default class EditProfile extends React.Component {
   loadData() {
     const { navigation } = this.props
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://192.168.56.1/stylefit/provapi/profile', {
+      fetch('http://www.playspread.com/stylefit/ProvApi/profile', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export default class EditProfile extends React.Component {
   }
    _getServices() {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://192.168.56.1/stylefit/provapi/get_services', {
+      fetch('http://www.playspread.com/stylefit/ProvApi/get_services', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -136,13 +136,17 @@ export default class EditProfile extends React.Component {
       })
   }
   _saveData() {
+    this.setState({
+      showDialog: true,
+      dialogMessage: 'This feature hasn\'t been activated. Please check back'
+    })
     //this.setState({ showLoading: true })
-    const { address, profession, intro } = this.state; 
+    //const { address, profession, intro } = this.state; 
     //if (address != '' && profession != '' && intro != '') {
-      alert(this.state.address + "address");
-      alert(this.state.profession + "prof");
-      alert(this.state.selectedService + "service");
-      alert(this.state.intro + "intro");
+      // alert(this.state.address + "address");
+      // alert(this.state.profession + "prof");
+      // alert(this.state.selectedService + "service");
+      // alert(this.state.intro + "intro");
       // AsyncStorage.getItem('jwt').then(token => {
       //   fetch('http://192.168.56.1/stylefit/provapi/update_profile', {
       //     method: 'POST',

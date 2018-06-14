@@ -43,7 +43,7 @@ export default class Settings extends React.Component {
   }
   loadData = () => {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://192.168.56.1/stylefit/povapi/profile', {
+      fetch('http://www.playspread.com/stylefit/ProvApi/profile', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ export default class Settings extends React.Component {
               <Thumbnail
                large
                 source={{
-                  uri: 'http://192.168.56.1/stylefit/app/webroot/customer_pic/IMG_20171018_103905_661.jpg'
+                  uri: 'http://www.playspread.com/stylefit/app/webroot/customer_pic/IMG_20171018_103905_661.jpg'
                 }}
                resizeMode="cover"
               />

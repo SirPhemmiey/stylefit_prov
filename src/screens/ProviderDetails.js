@@ -57,7 +57,7 @@ export default class ProviderDetails extends React.Component {
   loadData = () => {
     const { navigation } = this.props
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://www.playspread.com/stylefit/provapi/pro_details', {
+      fetch('http://www.playspread.com/stylefit/ProvApi/pro_details', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ export default class ProviderDetails extends React.Component {
           })
         })
 
-        fetch('http://www.playspread.com/stylefit/provapi/get_services', {
+        fetch('http://www.playspread.com/stylefit/ProvApi/get_services', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export default class ProviderDetails extends React.Component {
       this.setState({
         showLoading: true,
       })
-        fetch('http://www.playspread.com/stylefit/provapi/update_profile', {
+        fetch('http://www.playspread.com/stylefit/ProvApi/update_profile', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

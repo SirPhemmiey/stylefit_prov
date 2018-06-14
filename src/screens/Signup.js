@@ -39,7 +39,7 @@ export default class Signup extends React.Component {
       const { full_name, email, phone, password } = this.state;
     if (full_name != '' && email != '' && phone != '' && password != '') {
       this.setState({ showLoading: true })
-      fetch('http://192.168.56.1/stylefit/provapi/signup', {
+      fetch('http://www.playspread.com/stylefit/ProvApi/signup', {
         method: 'POST',
         body: JSON.stringify({
           full_name: this.state.full_name,

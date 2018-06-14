@@ -81,7 +81,7 @@ export default class Schedules extends React.Component {
     this.setState({ showLoading: true })
     if (this.state.comments != '') {
       AsyncStorage.getItem('jwt').then(token => {
-        fetch('http://www.playspread.com/provapi/add_review', {
+        fetch('http://www.playspread.com/ProvApi/add_review', {
           method: "POST",
           'Content-Type' : 'application/json',
           'Authorization': `Bearer ${token}`,
@@ -132,7 +132,7 @@ export default class Schedules extends React.Component {
    
   loadData() {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://www.playspread.com/stylefit/provapi/all_schedules', {
+      fetch('http://www.playspread.com/stylefit/ProvApi/all_schedules', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -142,12 +142,12 @@ export default class Schedules extends React.Component {
         .then(res => res.json())
         .then(res => {
           if (res == 'empty') {
-            // this.setState({
-            //   showDialog: true,
-            //   dialogMessage: "You have no schedule yet",
-            //   showLoader: false,
-            //   showLoading: false
-            // })
+            this.setState({
+              //showDialog: true,
+              //dialogMessage: "You have no schedule yet",
+              showLoader: false,
+              showLoading: false
+            })
           }
           else if (res == 'user') {
             this.setState({
@@ -193,7 +193,7 @@ _handleConfirm = (schedule_id, provider_id) => () => {
   //this.setState({ showConfirm: false })
   AsyncStorage.getItem('jwt').then(token => {
     this.setState({ showLoading: true})
-    fetch('http://www.playspread.com/stylefit/provapi/confirm_schedule', {
+    fetch('http://www.playspread.com/stylefit/ProvApi/confirm_schedule', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -95,6 +95,6 @@ const styles = {
         marginTop: 20,
         backgroundColor: '#6c5ce7',
         justifyContent: 'center',
-        marginLeft: 130
+        marginLeft: 150
     }
 };

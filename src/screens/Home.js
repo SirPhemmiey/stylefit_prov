@@ -50,7 +50,7 @@ export default class Home extends React.Component {
 
   loadData = () => {
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://www.playspread.com/stylefit/provapi/home', {
+      fetch('http://www.playspread.com/stylefit/ProvApi/home', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ export default class Home extends React.Component {
       showLoading: true,
     });
     AsyncStorage.getItem('jwt').then(token => {
-      fetch('http://www.playspread.com/stylefit/provapi/confirm_request', {
+      fetch('http://www.playspread.com/stylefit/ProvApi/confirm_request', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
